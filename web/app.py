@@ -13,11 +13,42 @@ app = Flask (__name__)# this creates the web app instance. __name__ refers to th
 def hello():
         return render_template('index.html')
 
+
+#.get() is a safer way to access values from dictionaries
+'''data = {"name": "Amalu"}
+
+data.get("name")        # ✅ returns "Amalu"
+data.get("age")         # ✅ returns None (no crash)
+data.get("age", 0)      # ✅ returns 0 (default)
+
+data["name"]            # ✅ returns "Amalu"
+data["age"]             # ❌ KeyError: 'age' '''
+
+
+
 @app.route('/results', methods=['POST'])#processes the form and shows weather #methods=['POST'] allow the route to accept POST requests
 def show_results():
     
     city = request.form.get("cityname")#request.form is a dictionary which contains the submitted form data(only when form method is POST)# .get("cityname")  SIMILAR AS dict.get("key") - MORE SAFE
-    print(city)
-    return f"You searched city for :{city}"
+    if not city or city.strip() == "":
+        return"Please enter a city name!"
+
+
+    else:
+        clean_city = city.strip()#removes unnecessary spacings that entered
+        url = f"http://api.openweathermap.org/data/2.5/weather?q={clean_city}&appid={api_key}&units=metric" 
+        response= requests.get(url)
+        data = response.json()
+        #return(data)
+    
+
+    if data.get("cod") != 200:
+        return f"Error: {data.get('message','Unknown error')}"
+    else:
+        temp=data["main"]["temp"]
+        description= data["weather"][0]["description"]
+        city_name = data["name"]
+        main_weather = data['weather'][0]['main']
+        return f"The weather in {city_name} is {temp}°C with {description}"
 if __name__ =="__main__": #to run the app
     app.run(debug=True)
