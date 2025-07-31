@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> <!---Tells the browser to use UTF-8 character encoding (supports most characters/symbols).-->
+
+
+        <title>
+            Weather Results 
+        </title>
+
+        <style>
+                body{
+                    font-family: Arial, sans- serif;
+                    background-color: #1d5b6a;
+                    padding: 20px; /*Adds space inside the page border*/
+                    text-align: center;/* Centers all text content horizontally */
+                }
+
+                .boxaround{
+                    background-color: rgb(117, 144, 145) ;
+                    border-radius: 10px;/* Rounded corners*/
+                    padding: 30px; /* Space inside the box*/
+                    display: inline- block; /* Makes the box fit its content and be centerable*/
+                    box-shadow:  0 4px 6px rgba(0,0,0,0.1); /*Shadow effect*/
+                }
+                .temp{
+                    font-size: 2.5em;/*Make temperature text large*/
+                    margin-bottom: 10px;/*adds space below it*/
+                }
+                .desc {
+                font-size: 1.2em;/*slightly larger thsn normsl text*/
+                color: #666;/*grey*/
+                }
+
+                
+
+        </style>
+    </head>
+
+<body>
+    <div class ="boxaround"
+        <h1> Weather in {{ city }}</h1> <!--{{ city }} from the Flask app.-->
+
+
+    <div class="temp">
+        {{ temp }}°C  <!--{{ temp }} from the Flask app.-->
+
+    </div>
+    
+    <div class ="desc">
+        {{ description }}
+    </div>
+</body>
+
+</html>

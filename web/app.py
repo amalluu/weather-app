@@ -49,6 +49,9 @@ def show_results():
         description= data["weather"][0]["description"]
         city_name = data["name"]
         main_weather = data['weather'][0]['main']
-        return f"The weather in {city_name} is {temp}°C with {description}"
+        #return f"The weather in {city_name} is {temp}°C with {description}"
+    
+        return render_template("results.html",city= clean_city,temp= temp, description=description)
+
 if __name__ =="__main__": #to run the app
     app.run(debug=True)
