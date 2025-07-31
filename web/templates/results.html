@@ -11,15 +11,15 @@
         <style>
                 body{
                     font-family: Arial, sans- serif;
-                    background-color: #1d5b6a;
+                    background-color:  #62bdd3;
                     padding: 20px; /*Adds space inside the page border*/
                     text-align: center;/* Centers all text content horizontally */
                 }
 
                 .boxaround{
-                    background-color: rgb(117, 144, 145) ;
-                    border-radius: 10px;/* Rounded corners*/
-                    padding: 30px; /* Space inside the box*/
+                    background-color: rgb(158, 203, 205) ;
+                    border-radius: 50px;/* Rounded corners*/
+                    padding: 50px; /* Space inside the box*/
                     display: inline- block; /* Makes the box fit its content and be centerable*/
                     box-shadow:  0 4px 6px rgba(0,0,0,0.1); /*Shadow effect*/
                 }
@@ -30,6 +30,17 @@
                 .desc {
                 font-size: 1.2em;/*slightly larger thsn normsl text*/
                 color: #666;/*grey*/
+                }
+                .backbutton {
+                    background-color: #098be1;
+                    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    border-radius: 5px;
+                    margin-top: 20px;
+                    display: inline-block;
+                    text-decoration: none;
+                    font-weight: bold;
+                    color: rgb(245, 244, 244);/*text color*/
+                    padding: 5px 10px;
                 }
 
                 
@@ -47,9 +58,15 @@
 
     </div>
     
+    
     <div class ="desc">
         {{ description }}
     </div>
-</body>
 
+</div>
+
+</body>
+  <div>
+        <a href="/" class="backbutton">Back</a>
+    </div>
 </html>
