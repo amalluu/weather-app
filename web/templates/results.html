@@ -14,28 +14,44 @@
                     background-color:  #62bdd3;
                     padding: 20px; /*Adds space inside the page border*/
                     text-align: center;/* Centers all text content horizontally */
+                    align-items: center;
                 }
 
                 .boxaround{
                     background-color: rgb(158, 203, 205) ;
                     border-radius: 30px;/* Rounded corners*/
-                    padding: 50px; /* Space inside the box*/
+                    padding: 40px; /* Space inside the box*/
                     display: inline- block; /* Makes the box fit its content and be centerable*/
                     box-shadow:  0 4px 6px rgba(0,0,0,0.1); /*Shadow effect*/
-                    width: 500px;
-                    margin-left: 60px;
+                    width: 505px;
+                    
+                    margin: 0 auto;
+                    color: rgb(204, 20, 20);
+                    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    
+                }
+                h1{
+                    color: rgb(15, 12, 12);
+                    font-family: 'monospace';
+                }
+                h2{
+                    color: rgb(13, 77, 38);
+                }
+                h3{
+                    color: rgb(74, 86, 16);
                 }
                 .temp{
                     font-size: 2.5em;/*Make temperature text large*/
                     margin-bottom: 10px;/*adds space below it*/
                     color: red;
+                    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
                 }
                 .desc {
                 font-size: 1.2em;/*slightly larger thsn normsl text*/
                 color: #666;/*grey*/
                 }
                 .backbutton {
-                    background-color: #098be1;
+                    background-color: #64452e;
                     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
                     border-radius: 6px;
                     margin-top: 20px;
@@ -52,8 +68,8 @@
     </head>
 
 <body>
-    <div class ="boxaround"
-        <h1> Weather in {{ city }}</h1> <!--{{ city }} from the Flask app.-->
+    <div class ="boxaround">
+        <h1> Weather in {{ cityy }}</h1> <!--{{ city }} from the Flask app.-->
 
 
     <div class="temp">
@@ -72,6 +88,12 @@
   };
 </script>
 </div>
+<h2>Outfit Recommendation</h2>
+
+<h3>
+
+    {{advice}}
+</h3>
 
 </body>
   <div>

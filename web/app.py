@@ -48,11 +48,45 @@ def show_results():
     else:
         temp=data["main"]["temp"]
         description= data["weather"][0]["description"]
-        city_name = data["name"]
         main_weather = data['weather'][0]['main']
-        #return f"The weather in {city_name} is {temp}°C with {description}"
     
-        return render_template("results.html",city= clean_city,temp= temp, description=description)
+        return outfit_recommend(temp,description,main_weather,clean_city)
+        #return f"The weather in {city_name} is {temp}°C with {description}"
+
+def outfit_recommend(temp,description,main_weather,clean_city):
+        advice =" "
+
+        
+        
+        if temp<0:
+            advice +="Bundle up!🥶\n Heavy coat, gloves, and scarf needed!🧣\nStart with a fitted base layer, like a thermal top and leggings🧦\nDon't forget the boots!!👢"
+        elif 0<temp<=10:
+            advice +="Chilly weather ahead!🌬️\nWear a warm jacket or layered coat🧥\nAdd a light scarf and gloves🧤\nA sweater or thermal layer underneath will keep you cozy!\nDon't forget the boots!!👢"
+        elif 10<temp<20:
+            advice +="Cool and comfy! 🍂\nA light jacket or hoodie should do the trick🧥\nLayer with a long-sleeve top or sweater👚\nKeep a scarf handy just in case🧣\nComfortable sneakers or shoes will be perfect👟"
+        elif 20 <= temp < 25:
+            advice +="Pleasant weather! 🌤️\nPerfect for a T-shirt or a light full-sleeve top👕\nJeans, cotton pants, or skirts work well👖👗\nChoose your comfy sneakers or sandals👟🩴"
+        elif 25 <= temp < 30:
+            advice +="Warm and sunny! ☀️\n Time for light, breathable clothes like cotton T-shirts, tank tops, or dresses👚🩱\nStay hydrated and wear sunscreen🧴🕶️\nShorts or airy pants are ideal🩳👖\nOpen footwear like sandals or flip-flops will keep you comfy🩴"
+
+        else:
+            advice +="It's hot out there! 🔥\nWear the lightest, most breathable clothes you have — cotton, linen, or dry-fit👕🩳\nStay in the shade when possible and drink plenty of water💧\nSunglasses, a cap, and sunscreen are a must!🕶️🧢🧴\nFlip-flops or breathable shoes will keep your feet cool🩴"
+
+        if "heavy" in description:
+             for word in ["rain","snow","thunder","drizzle"]:
+                  if word in description:
+                       advice +=f"⚠️ Heavy {word.capitalize()}! Stay safe."
+                       break
+                  
+        if "light"  in description:
+             for word in ["rain","snow","thunder","drizzle"]:
+                  if word in description:
+                       advice +=f"⚠️ Light {word.capitalize()}! Stay safe."
+                       break
+                  
+        
+             
+        return render_template("results.html",cityy= clean_city,temp= temp, description=description, advice= advice)
 
 if __name__ =="__main__": #to run the app
     app.run(debug=True)
