@@ -10,34 +10,45 @@
             background-color:  #a1b7bc;
             padding: 20px; /*Adds space inside the page border*/
             text-align: center;/* Centers all text content horizontally */
+            align-items: center;
             }
         .box{
                     background-color: #388e8e ;
-                    border-radius: 20px;/* Rounded corners*/
+                    border-radius:30px;/* Rounded corners*/
                     padding: 40px; /* Space inside the box*/
                     display: inline- block; /* Makes the box fit its content and be centerable*/
-                    box-shadow:  0 5px 9px rgba(0,0,0,0.1); /*Shadow effect*/
+                    box-shadow:  0 4px 10px rgba(0,0,0,0.2); /*Shadow effect*/
                     color: white;
+                    width: 505px;
+                    margin: 0 auto;
 
                 }
         .button {
                     background-color:#1b5e7c;
-                    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-                    border-radius: 5px;
+                    border-radius: 6px;
                     margin-top: 20px;
                     display: inline-block;
                     text-decoration: none;
                     font-weight: bold;
                     color: #f5f4f4;/*text color*/
-                    padding: 1px 20px;
+                    padding: 10px 20px;
                     border: none;
                     cursor: pointer;
                 }
-       .input[type="text"]{
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid grey;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        input[type="text"] {
+    padding: 10px;
+    border-radius: 8px;
+    width: 200px;
+    border: 2px solid #ccc; /* normal gray border */
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border: 2px solid green; /* show green only on click */
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.3); /* subtle glow effect */
+}
+
+               
         }
         .button:hover{
             background-color:  #14445c ;
@@ -45,7 +56,7 @@
         }
 
            
-        .h1{
+        h1{
            margin-bottom: 30px; 
            font-size: 36px;
         }
@@ -54,16 +65,15 @@
         </style>
 </head>
 
-
-<div class=" box"> 
-    <h1> ☁️ Welcome To Skycast ☀️</h1>
+<body>
+<div class="box"> 
+    <h1> ☁️ Welcome to SkyCast ☀️</h1>
   
  <FORM method ="POST" action= "/results"> <!-- post sents data user entered to the server and /results - go to the results route and do the function -->  
   
-    <label>Which city would you like weather for?</label><br> 
    
-    <input type="text" name = "cityname" id = "cityname" placeholder="Enter city name"> <BR>
-        <button type ="submit" class = "button"> Get Weather Data </button>
+    <input type="text" name = "cityname" id = "cityname" placeholder="Enter city name" autocomplete="off" required> <BR>
+    <button type ="submit" class = "button"> Get Weather Data </button>
     </FORM>
     </div> 
 </body>

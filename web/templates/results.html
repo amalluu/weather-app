@@ -18,14 +18,17 @@
 
                 .boxaround{
                     background-color: rgb(158, 203, 205) ;
-                    border-radius: 50px;/* Rounded corners*/
+                    border-radius: 30px;/* Rounded corners*/
                     padding: 50px; /* Space inside the box*/
                     display: inline- block; /* Makes the box fit its content and be centerable*/
                     box-shadow:  0 4px 6px rgba(0,0,0,0.1); /*Shadow effect*/
+                    width: 500px;
+                    margin-left: 60px;
                 }
                 .temp{
                     font-size: 2.5em;/*Make temperature text large*/
                     margin-bottom: 10px;/*adds space below it*/
+                    color: red;
                 }
                 .desc {
                 font-size: 1.2em;/*slightly larger thsn normsl text*/
@@ -34,7 +37,7 @@
                 .backbutton {
                     background-color: #098be1;
                     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-                    border-radius: 5px;
+                    border-radius: 6px;
                     margin-top: 20px;
                     display: inline-block;
                     text-decoration: none;
@@ -62,7 +65,12 @@
     <div class ="desc">
         {{ description }}
     </div>
-
+<script>
+  // Clears input when returning from another page
+  window.onload = function() {
+    document.getElementById('cityname').value = '';
+  };
+</script>
 </div>
 
 </body>

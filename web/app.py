@@ -32,6 +32,7 @@ def show_results():
     city = request.form.get("cityname")#request.form is a dictionary which contains the submitted form data(only when form method is POST)# .get("cityname")  SIMILAR AS dict.get("key") - MORE SAFE
     if not city or city.strip() == "":
         return"Please enter a city name!"
+        
 
 
     else:
