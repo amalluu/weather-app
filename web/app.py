@@ -29,7 +29,7 @@ def show_results():
     data = get_weatherdata(clean_city)
     
     if "error" in data:
-        return render_template("results.html",city=clean_city,error= data["error"])
+        return render_template("results.html",cityy=clean_city,error= data["error"])
     
         
     temp=data["main"]["temp"]
