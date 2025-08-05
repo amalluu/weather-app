@@ -9,14 +9,7 @@
         </title>
 
         <style>
-                body{
-                    font-family: Arial, sans- serif;
-                    
-                    padding: 20px; /*Adds space inside the page border*/
-                    text-align: center;/* Centers all text content horizontally */
-                    align-items: center;
-                }
-
+              
                 .boxaround{
                     background-color: rgb(158, 203, 205) ;
                     border-radius: 30px;/* Rounded corners*/
@@ -30,25 +23,11 @@
                     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
                     
                 }
-                h1{
-                    color:rgb(13, 77, 38);
-                    font-family: 'monospace';
-                }
-                h2{
-                    color: rgb(248, 249, 245);
-                }
-                h3{
-                    color: rgb(11, 20, 21);
-                }
-                .temp{
-                    font-size: 2.5em;/*Make temperature text large*/
-                    margin-bottom: 10px;/*adds space below it*/
-                    color: red;
-                    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-                }
+
+                
                 .desc {
                 font-size: 1.2em;/*slightly larger thsn normsl text*/
-                color: #666;/*grey*/
+                color: #eee3e3;/*grey*/
                 }
                 .backbutton {
                     background-color: #64452e;
@@ -68,38 +47,39 @@
     </head>
 
 <body>
+    <div class="container">
     <div class ="card">
         <h1> Weather in {{ cityy }}</h1> <!--{{ city }} from the Flask app.-->
     {% if error %}
     <p style="color: red;">{{ error }}</p>
     {% else %}
-    <p style="color: red;">{{ temp }}°C</p>
+    <div class = temp>{{ temp }}°</div>
     {% endif %}
-    </div>
-    
-    
     <div class ="desc">
         {{ description }}
     </div>
-<script>
-  // Clears input when returning from another page
-  window.onload = function() {
-    document.getElementById('cityname').value = '';
-  };
-</script>
+    </div>
+
+
+
+
+<div class ="advice">
+    
+    <h3>Weather Advice</h3>
+    {{advice}}</div>
+
+    
+
+<div class="outfit">
+<h3>Outfit Recommendations</h3>
+    
+    {{outfit|safe}}
+
 </div>
-
-
-<h3>
-
-    {{advice}}
-</h3>
-
-<h3>{{outfit|safe}}</h3>
 </body>
   <div>
         <a href="/" class="backbutton">Back</a>
     </div>
-
-    </div>
+</div>
+    
 </html>

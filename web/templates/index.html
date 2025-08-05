@@ -5,39 +5,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>SKYCAST WEATHER APP</title>
-<style>
-        body{
-            font-family: Inter;
-            
-            padding: 20px; /*Adds space inside the page border*/
-            text-align: center;/* Centers all text content horizontally */
-            align-items: center;
-            }
-        .box{
-                    background-color: #388e8e ;
-                    border-radius:30px;/* Rounded corners*/
-                    padding: 40px; /* Space inside the box*/
-                    display: inline- block; /* Makes the box fit its content and be centerable*/
-                    box-shadow:  0 4px 10px rgba(0,0,0,0.2); /*Shadow effect*/
-                    color: white;
-                    width: 505px;
-                    margin: 0 auto;
 
-                 }
-        
-
-
-               
-
-        .button:hover{
-            background-color:  #14445c ;
-            
-        }
-
-           
-        
-
-        </style>
 </head>
 
 <body>
@@ -50,6 +18,12 @@
    
     <input type="text" name = "cityname" id = "cityname" placeholder="Enter city name" autocomplete="on" required> <BR>
     <button type ="submit" class = "button"> Get Weather Data </button>
+    <script>
+  // Clears input when returning from another page
+  window.onload = function() {
+    document.getElementById('cityname').value = '';
+  };
+</script>
     </FORM>
     </div> 
 </body>

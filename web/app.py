@@ -100,22 +100,23 @@ def get_weather_advice(temp,description):
     elif temp>30:
          advice+= "🌡️ It's hot! Stay hydrated and avoid prolonged sun exposure."
     
-    if ("rain") or ("drizzle") in description :
-         advice += "🌧️ Rainy weather - perfect for indoor activities!"
+    if "rain" in description or "drizzle" in description:
+        advice += "🌧️ Rainy weather - perfect for indoor activities!"
+
     elif "snow" in description:
          advice+=  "❄️ Snowy conditions - drive carefully and stay warm!"   
     elif "thunder" in description:
          advice+= "⚡️ Thunderstorms - Seek shelter in a sturdy building or hardtop car, avoid tall objects and electrical appliances, and stay away from water."
     elif "clear" in description:
-         advice+="☀️ Clear Sky - perfect for indoor activities! "
+         advice+="☀️ perfect for indoor activities! "
     elif " few" in description:
-         advice+="☁️ Few Clouds - Monitor weather, as conditions can change. Have a light jacket or umbrella just in case"
+         advice+="☁️  Monitor weather, as conditions can change. Have a light jacket or umbrella just in case"
     elif "scattered" in description:
-         advice+="☁️☁️Scattered  Clouds- Remain aware of the weather. Seek shade occasionally and stay hydrated."
+         advice+="☁️☁️ Remain aware of the weather. Seek shade occasionally and stay hydrated."
     elif "broken" in description:
-         advice+= " Broken Clouds- Be prepared for potential changes in weather patterns. Carry rain gear and seek shelter if the clouds darken"
+         advice+= " ☁️☁️ Be prepared for potential changes in weather patterns. Carry rain gear and seek shelter if the clouds darken"
     elif "overcast" in description:
-         advice+= "Overcast Clouds - Enjoy indoor activities. If heading out, dress warmly and bring an umbrella or rain gear"
+         advice+= "☁️☁️ Enjoy indoor activities. If heading out, dress warmly and bring an umbrella or rain gear"
     
     elif "tornado" in description:
          advice+= "🌪️ Tornado: Seek immediate shelter in a basement or interior room, avoid windows, and protect your head."

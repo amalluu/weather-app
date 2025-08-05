@@ -2,21 +2,44 @@
     padding:0;                  /*resets all default spacings*/
     box-sizing: border-box;}
 
-   body {                  
+    
+    /*body {                  
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
     background: linear-gradient(135deg,  #085078 10%, #EAECC6 40%, #85D8CE 70%);
-    align-items: center;}
+    align-items: center;}*/
+
+    body {                  
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #085078 20%, #8E54E9 50%, #85D8CE 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    align-items: center;
+    text-align: center;
+}
 
 
     .container{  max-width:500px;
-    padding:20px;
-    margin: 0 auto;}/*"auto" left/right centers it*/
-
+    padding:30px;
+    margin: 0 auto;/*"auto" left/right centers it*/
+    background-color: white;
+    border-radius: 30px;
+    align-content: center;
+    /*background: linear-gradient(135deg,#e8e7ec 50%, #776bb0 100%);*/
+    background:
+    radial-gradient(circle at top left, #5841b4, transparent 60%),
+    radial-gradient(circle at bottom right, #776bb0, transparent 60%),
+    radial-gradient(circle at top right, #5841b4, transparent 60%),
+    radial-gradient(circle at bottom left, #776bb0, transparent 60%);
+    background-color: white;
+}
    .card {
-    background:linear-gradient(45deg,   #516395 0%,#8eb6d5 50%,#614385 100%);
+    /*background:linear-gradient(45deg,   #516395 0%,#8eb6d5 50%,#614385 100%);*/
+    background:linear-gradient(135deg,#AA076B 50%, #61045F 100%);
+
     border-radius: 20px;
-    padding: 30px;
+    padding: 10px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     margin: 20px;
     backdrop-filter: blur(10px);/*frosted glass vector-effect*/
@@ -24,9 +47,40 @@
     align-items: center;
     max-width: 500px;
     margin: 20px auto;
-    margin-top: 150px ;
+    
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    
 
 }
+.advice{
+    background:linear-gradient(45deg,   #cb5d09 50%,#FFC837 100%);
+    border-radius: 15px;
+    max-width: 200px;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+    margin-left: 120px;
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    margin-bottom: 20px;
+
+}
+
+.outfit{
+     background:linear-gradient(45deg, #a29bfe, #6c5ce7);
+    border-radius: 15px;
+    max-width: 400px;
+    align-items: center;
+    color: white;
+    padding: 30px 20px;
+    margin-left:20px;
+    margin-bottom: 20px;
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+}
+
+
 h1 {
     font-size: 2.0rem;   /* Relative to ROOT font size (browser default is usually 16px)*/
     font-weight: 600; /*400 = normal, 600 = semi-bold, 700 = bold*/
@@ -40,10 +94,17 @@ h1 {
 .temp {
     font-size: 3rem;
     font-weight: 700;
-    color: #e17055;
+    margin-bottom: 10px;
+    color: #cb4f29;
     text-align: center;
     margin: 20px 0; /*20px 0 means "20px top/bottom, 0px left/right"*/
-}
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;}
+
+/*.temp{
+        font-size: 2.5em; /*Make temperature text large*/
+        /*margin-bottom: 10px;/*adds space below it*/
+        /*color: red;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;} */
 
 input[type="text"] {
     width: 100%;
@@ -70,7 +131,7 @@ input[type="text"]:hover{
                     
         background:linear-gradient(135deg,#085078,#2693b1,#85D8CE);
                     border-radius:12px;
-                    margin-top: 15px;
+                    margin: 15px auto 0 auto; /* top 15px, center left/right */
                     width: 50%;
                     text-decoration: none;
                     font-weight: bold;
@@ -79,13 +140,33 @@ input[type="text"]:hover{
                     border: none;
                     cursor: pointer;
                     transition: all 0.3s ease;
+                    display: block; /* makes it take up full width for margin auto to work */
                     font-size: 16px;
+                    background-size: 400% 400%;
+                    animation: gradientShift 8s ease infinite;
+                    align-items: center;
                 }
  .button:hover{
             transform: translateY(-4px) translateX(-2px);/* Button moves UP 2 pixels on hover*/
     box-shadow: 0 10px 5px 5px rgba(9, 41, 73, 0.2);/*Glowing border effect*/
             
         }
+
+
+
+
+    @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
+
+
+
+
 
 
 
