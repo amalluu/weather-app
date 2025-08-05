@@ -2,8 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8"> <!---Tells the browser to use UTF-8 character encoding (supports most characters/symbols).-->
-
-
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <title>
             Weather Results 
         </title>
@@ -11,7 +11,7 @@
         <style>
                 body{
                     font-family: Arial, sans- serif;
-                    background-color:  #62bdd3;
+                    
                     padding: 20px; /*Adds space inside the page border*/
                     text-align: center;/* Centers all text content horizontally */
                     align-items: center;
@@ -68,7 +68,7 @@
     </head>
 
 <body>
-    <div class ="boxaround">
+    <div class ="card">
         <h1> Weather in {{ cityy }}</h1> <!--{{ city }} from the Flask app.-->
 
 
@@ -99,5 +99,7 @@
 </body>
   <div>
         <a href="/" class="backbutton">Back</a>
+    </div>
+
     </div>
 </html>

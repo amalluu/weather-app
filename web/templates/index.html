@@ -2,12 +2,13 @@
 <html lang = "en">
 <head>
     <meta charset="UTF-8">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>SKYCAST WEATHER APP</title>
 <style>
         body{
-            font-family: Georgia, 'Times New Roman', Times, serif;
-            background-color:  #a1b7bc;
+            font-family: Inter;
+            
             padding: 20px; /*Adds space inside the page border*/
             text-align: center;/* Centers all text content horizontally */
             align-items: center;
@@ -22,31 +23,9 @@
                     width: 505px;
                     margin: 0 auto;
 
-                }
-        .button {
-                    background-color:#1b5e7c;
-                    border-radius: 6px;
-                    margin-top: 20px;
-                    display: inline-block;
-                    text-decoration: none;
-                    font-weight: bold;
-                    color: #f5f4f4;/*text color*/
-                    padding: 10px 20px;
-                    border: none;
-                    cursor: pointer;
-                }
-        input[type="text"] {
-    padding: 10px;
-    border-radius: 8px;
-    width: 200px;
-    border: 2px solid #ccc; /* normal gray border */
-    outline: none;
-}
+                 }
+        
 
-input[type="text"]:focus {
-    border: 2px solid green; /* show green only on click */
-    box-shadow: 0 0 5px rgba(0, 128, 0, 0.3); /* subtle glow effect */
-}
 
                
 
@@ -56,23 +35,20 @@ input[type="text"]:focus {
         }
 
            
-        h1{
-           margin-bottom: 30px; 
-           font-size: 36px;
-        }
-
+        
 
         </style>
 </head>
 
 <body>
-<div class="box"> 
+    <div class="card"> 
+
     <h1> ☁️ Welcome to SkyCast ☀️</h1>
   
  <FORM method ="POST" action= "/results"> <!-- post sents data user entered to the server and /results - go to the results route and do the function -->  
   
    
-    <input type="text" name = "cityname" id = "cityname" placeholder="Enter city name" autocomplete="off" required> <BR>
+    <input type="text" name = "cityname" id = "cityname" placeholder="Enter city name" autocomplete="on" required> <BR>
     <button type ="submit" class = "button"> Get Weather Data </button>
     </FORM>
     </div> 

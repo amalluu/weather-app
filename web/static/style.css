@@ -1,0 +1,93 @@
+* {  margin:0;
+    padding:0;                  /*resets all default spacings*/
+    box-sizing: border-box;}
+
+   body {                  
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg,  #085078 10%, #EAECC6 40%, #85D8CE 70%);
+    align-items: center;}
+
+
+    .container{  max-width:500px;
+    padding:20px;
+    margin: 0 auto;}/*"auto" left/right centers it*/
+
+   .card {
+    background:linear-gradient(45deg,   #516395 0%,#8eb6d5 50%,#614385 100%);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    backdrop-filter: blur(10px);/*frosted glass vector-effect*/
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    align-items: center;
+    max-width: 500px;
+    margin: 20px auto;
+    margin-top: 150px ;
+
+}
+h1 {
+    font-size: 2.0rem;   /* Relative to ROOT font size (browser default is usually 16px)*/
+    font-weight: 600; /*400 = normal, 600 = semi-bold, 700 = bold*/
+    color: #2d3436;
+    text-align: center;
+    margin: 0 0 25px 0;
+    padding-top: 10px;
+
+}
+
+.temp {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #e17055;
+    text-align: center;
+    margin: 20px 0; /*20px 0 means "20px top/bottom, 0px left/right"*/
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 15px 20px;/*padding: 10px = all sides get 10px*//*padding: 15px 20px means 15px = top AND bottom , 20px = left AND right*/
+    border: 2px solid rgba(255, 255, 255, 0.3);/* White with 30% opacity */
+    border-radius: 12px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.8);/* White with 80% opacity */
+    outline: none;
+    transition: all 0.3s ease; /* Smooth animation when properties change*/
+}
+
+input[type="text"]:focus {
+    border-color: #afb2b5;
+    box-shadow: 0 10px 10px 10px rgba(9, 41, 73, 0.2);/*Glowing border effect*/
+    
+}
+input[type="text"]:hover{
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 0 10px 5px 5px rgba(9, 41, 73, 0.2);
+
+}
+    .button {
+                    
+        background:linear-gradient(135deg,#085078,#2693b1,#85D8CE);
+                    border-radius:12px;
+                    margin-top: 15px;
+                    width: 50%;
+                    text-decoration: none;
+                    font-weight: bold;
+                    color:white;/*text color*/
+                    padding: 10px 20px;
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    font-size: 16px;
+                }
+ .button:hover{
+            transform: translateY(-4px) translateX(-2px);/* Button moves UP 2 pixels on hover*/
+    box-shadow: 0 10px 5px 5px rgba(9, 41, 73, 0.2);/*Glowing border effect*/
+            
+        }
+
+
+
+
+
