@@ -2,30 +2,51 @@
 <html lang = "en">
 <head>
     <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>SKYCAST WEATHER APP</title>
 
 </head>
 
 <body>
-    <div class="card"> 
+    <div class="container">
+        <div class="header">
+            <h1 class="app-title">☁️ SkyCast</h1>
+            <p class="app-subtitle">Professional Weather Forecasting</p>
+        </div>
+        
+        <div class="search-card">
+            <form method="POST" action="/results" class="search-form">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        name="cityname" 
+                        id="cityname" 
+                        placeholder="Enter city name..." 
+                        class="search-input"
+                        autocomplete="on" 
+                        required
+                    >
+                </div>
+                <button type="submit" class="search-btn">
+                    Get Weather Forecast
+                </button>
+            </form>
+        </div>
+    </div>
 
-    <h1> ☁️ Welcome to SkyCast ☀️</h1>
-  
- <FORM method ="POST" action= "/results"> <!-- post sents data user entered to the server and /results - go to the results route and do the function -->  
-  
-   
-    <input type="text" name = "cityname" id = "cityname" placeholder="Enter city name" autocomplete="on" required> <BR>
-    <button type ="submit" class = "button"> Get Weather Data </button>
     <script>
-  // Clears input when returning from another page
-  window.onload = function() {
-    document.getElementById('cityname').value = '';
-  };
-</script>
-    </FORM>
-    </div> 
+        // Clear input when returning from another page
+        window.onload = function() {
+            document.getElementById('cityname').value = '';
+        };
+        
+        // Add loading state to button
+        document.querySelector('.search-form').addEventListener('submit', function() {
+            const btn = document.querySelector('.search-btn');
+            btn.textContent = 'Getting Weather...';
+            btn.classList.add('loading');
+        });
+    </script>
 </body>
-
 </html>
