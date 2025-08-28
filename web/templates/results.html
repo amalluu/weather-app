@@ -1,88 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8"> <!---Tells the browser to use UTF-8 character encoding (supports most characters/symbols).-->
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        <title>
-            Weather Results 
-        </title>
-
-        <style>
-              
-                .boxaround{
-                    background-color: rgb(158, 203, 205) ;
-                    border-radius: 30px;/* Rounded corners*/
-                    padding: 40px; /* Space inside the box*/
-                    display: inline- block; /* Makes the box fit its content and be centerable*/
-                    box-shadow:  0 4px 6px rgba(0,0,0,0.1); /*Shadow effect*/
-                    width: 505px;
-                    
-                    margin: 0 auto;
-                    color: rgb(204, 20, 20);
-                    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-                    
-                }
-
-                
-                .desc {
-                font-size: 1.2em;/*slightly larger thsn normsl text*/
-                color: #eee3e3;/*grey*/
-                }
-                .backbutton {
-                    background-color: #64452e;
-                    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-                    border-radius: 6px;
-                    margin-top: 20px;
-                    display: inline-block;
-                    text-decoration: none;
-                    font-weight: bold;
-                    color: rgb(245, 244, 244);/*text color*/
-                    padding: 5px 10px;
-                }
-
-                
-
-        </style>
-    </head>
-
+    <meta charset="UTF-8"> <!---Tells the browser to use UTF-8 character encoding (supports most characters/symbols).-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather in {{ cityy }} - SkyCast</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 <body>
     <div class="container">
-    <div class ="weather">
+        <div class="header">
+            <h1 class="app-title">☁️ SkyCast</h1>
+            <p class="app-subtitle">Professional Weather Forecasting</p>
+        </div>
 
-        {% if not error %}
-            <h1>Weather in {{ cityy }}</h1> <!-- Show only if there's no error -->
-        {% endif %}    {% if error %}
-    <p style="color: rgba(202, 19, 19, 0.988);">{{ error }}</p>
-    {% else %}
-    <div class = temp>{{ temp }}°</div>
-    
-    <div class ="desc">
-        {{ description }}
+        {% if error %}
+            <div class="error-message">
+                <h3>❌ Error</h3>
+                <p>{{ error }}</p>
+                <a href="/" class="back-btn">
+                    ← Try Again
+                </a>
+            </div>
+        {% else %}
+            <div class="weather-container">
+                <!-- Main Weather Information -->
+                <div class="main-weather">
+                    <div class="weather-header">
+                        <div class="location">📍 {{ cityy }}</div>
+                    </div>
+                    
+                    <div class="current-temp">{{ temp }}°</div>
+                    <div class="weather-desc">{{ description }}</div>
+                    <div class="feels-like">Feels like {{ feels_like }}°</div>
+                    
+                    <!-- Weather Statistics -->
+                    <div class="weather-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">💧</div>
+                            <div class="stat-label">Humidity</div>
+                            <div class="stat-value">{{ humidity }}%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💨</div>
+                            <div class="stat-label">Wind</div>
+                            <div class="stat-value">{{ "%.1f"|format(wind_speed) }} m/s</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">👁️</div>
+                            <div class="stat-label">Visibility</div>
+                            <div class="stat-value">{{ "%.1f"|format(visibility) }} km</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🌡️</div>
+                            <div class="stat-label">Pressure</div>
+                            <div class="stat-value">{{ pressure }} hPa</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Weather Advice -->
+                    <div class="advice-card">
+                        <h3 class="card-title">🌤️ Weather Advice</h3>
+                        <div class="card-content">{{ advice }}</div>
+                    </div>
+
+                    <!-- Outfit Recommendations -->
+                    <div class="outfit-card">
+                        <h3 class="card-title">👔 Outfit Recommendations</h3>
+                        <div class="card-content">{{ outfit|safe }}</div>
+                    </div>
+
+                    <!-- Air Quality -->
+                    {% if air_quality %}
+                    <div class="air-quality">
+                        <h3 class="card-title">🌬️ Air Quality</h3>
+                        <div class="aqi-value aqi-{{ air_quality.label.lower().replace(' ', '-') }}">
+                            {{ air_quality.label }}
+                        </div>
+                        <div style="color: #94a3b8; font-size: 0.9rem;">
+                            AQI: {{ air_quality.aqi }}/5
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Forecast Section -->
+            {% if forecast %}
+            <div class="forecast-section">
+                <h3 class="section-title">🕐 24-Hour Forecast</h3>
+                <div class="hourly-forecast">
+                    {% for hour in forecast.hourly %}
+                    <div class="hourly-item">
+                        <div class="hour-time">{{ hour.time }}</div>
+                        <div style="margin: 8px 0; font-size: 1.2rem;">
+                            {% if hour.main == 'Clear' %}☀️
+                            {% elif hour.main == 'Clouds' %}☁️
+                            {% elif hour.main == 'Rain' %}🌧️
+                            {% elif hour.main == 'Snow' %}❄️
+                            {% else %}🌤️
+                            {% endif %}
+                        </div>
+                        <div class="hour-temp">{{ hour.temp }}°</div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                {% if forecast.daily %}
+                <h3 class="section-title" style="margin-top: 30px;">📅 5-Day Forecast</h3>
+                <div class="daily-forecast">
+                    {% for day in forecast.daily %}
+                    <div class="daily-item">
+                        <div class="day-name">{{ day.day }}</div>
+                        <div class="day-desc">{{ day.description }}</div>
+                        <div class="day-temps">
+                            <span class="temp-high">{{ day.temp_max }}°</span>
+                            <span class="temp-low">{{ day.temp_min }}°</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        {% endif %}
+
+        <a href="/" class="back-btn">
+            ← Back to Search
+        </a>
     </div>
-    </div>
-
-
-
-
-<div class ="advice">
-    
-    <h3>Weather Advice</h3>
-    {{advice}}</div>
-
-    
-
-<div class="outfit">
-<h3>Outfit Recommendations</h3>
-    
-    {{outfit|safe}}
-
-</div>
-    {% endif %}
 </body>
-  <div>
-        <a href="/" class="backbutton">Back</a>
-    </div>
-</div>
-    
 </html>
