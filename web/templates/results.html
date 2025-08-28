@@ -48,13 +48,15 @@
 
 <body>
     <div class="container">
-    <div class ="card">
-        <h1> Weather in {{ cityy }}</h1> <!--{{ city }} from the Flask app.-->
-    {% if error %}
-    <p style="color: red;">{{ error }}</p>
+    <div class ="weather">
+
+        {% if not error %}
+            <h1>Weather in {{ cityy }}</h1> <!-- Show only if there's no error -->
+        {% endif %}    {% if error %}
+    <p style="color: rgba(202, 19, 19, 0.988);">{{ error }}</p>
     {% else %}
     <div class = temp>{{ temp }}°</div>
-    {% endif %}
+    
     <div class ="desc">
         {{ description }}
     </div>
@@ -76,6 +78,7 @@
     {{outfit|safe}}
 
 </div>
+    {% endif %}
 </body>
   <div>
         <a href="/" class="backbutton">Back</a>

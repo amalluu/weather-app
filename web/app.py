@@ -2,7 +2,9 @@
 import requests
 from dotenv import load_dotenv
 import os
-from flask import Flask , render_template ,request, redirect, url_for #importing flask # render_template is a function for rendering templates # request imports the 'request' object from the Flask framework
+from flask import Flask , render_template ,request, redirect, url_for, jsonify#importing flask # render_template is a function for rendering templates # request imports the 'request' object from the Flask framework
+from datetime import datetime
+import json
 
 load_dotenv()
 api_key = os.getenv("API_KEY") #Environment setup should happen before you define routes(web app instance)
@@ -32,15 +34,38 @@ def show_results():
         return render_template("results.html",cityy=clean_city,error= data["error"])
     
         
-    temp=data["main"]["temp"]
-    description= data["weather"][0]["description"]
+   # Enhanced weather data extraction
+    current_temp = data["main"]["temp"]
+    feels_like = data["main"]["feels_like"]
+    humidity = data["main"]["humidity"]
+    pressure = data["main"]["pressure"]
+    description = data["weather"][0]["description"]
     main_weather = data['weather'][0]['main']
+    wind_speed = data.get("wind", {}).get("speed", 0)
+    visibility = data.get("visibility", 0) / 1000  # Convert to km
     
-    outfit = outfit_recommend(temp, description)
-    advice = get_weather_advice(temp, description)
+    # Get additional data
+    forecast_data = get_forecast_data(clean_city)
+    air_quality = get_air_quality(data["coord"]["lat"], data["coord"]["lon"])
+    
+    outfit = outfit_recommend(current_temp, description)
+    advice = get_weather_advice(current_temp, description, main_weather)
 
-    return render_template("results.html",cityy = clean_city,temp = temp, description = description, advice = advice, outfit = outfit)
-        #return f"The weather in {city_name} is {temp}°C with {description}"
+
+    return render_template("results.html", 
+                        cityy=clean_city,
+                         temp=current_temp,
+                         feels_like=feels_like,
+                         humidity=humidity,
+                         pressure=pressure,
+                         description=description,
+                         main_weather=main_weather,
+                         wind_speed=wind_speed,
+                         visibility=visibility,
+                         advice=advice,
+                         outfit=outfit,
+                         forecast=forecast_data,
+                         air_quality=air_quality)
 
 def outfit_recommend(temp,description):
         outfit =" "
@@ -74,7 +99,7 @@ def outfit_recommend(temp,description):
 #weather API call
 def get_weatherdata(clean_city):
      
-
+ 
         
     try:
         url = f"http://api.openweathermap.org/data/2.5/weather?q={clean_city}&appid={api_key}&units=metric" 
@@ -124,6 +149,52 @@ def get_weather_advice(temp,description):
     else:
          advice += "Have a Great Day!"
     return advice
+
+
+def get_forecast_data(city):
+    try:
+        url = f"http://api.openweathermap.org/data/2.5/forecast?q={city}&appid={api_key}&units=metric"
+        response = requests.get(url)
+        if response.status_code == 200:
+            forecast = response.json()
+            # Process 5-day forecast
+            daily_forecast = []
+            hourly_forecast = []
+            
+            for i in range(0, min(len(forecast["list"]), 40), 8):  # Every 24 hours
+                item = forecast["list"][i]
+                daily_forecast.append({
+                    "day": datetime.fromtimestamp(item["dt"]).strftime("%a"),
+                    "temp_max": round(item["main"]["temp_max"]),
+                    "temp_min": round(item["main"]["temp_min"]),
+                    "description": item["weather"][0]["description"],
+                    "main": item["weather"][0]["main"]
+                })
+
+              # Get hourly for next 24 hours
+            for i in range(min(8, len(forecast["list"]))):
+                item = forecast["list"][i]
+                hourly_forecast.append({
+                    "time": datetime.fromtimestamp(item["dt"]).strftime("%I %p"),
+                    "temp": round(item["main"]["temp"]),
+                    "main": item["weather"][0]["main"]
+                })
+            
+            return {"daily": daily_forecast, "hourly": hourly_forecast}
+    except:
+        return {"daily": [], "hourly": []}
+
+def get_air_quality(lat, lon):
+    try:
+        url = f"http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid={api_key}"
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            aqi = data["list"][0]["main"]["aqi"]
+            aqi_labels = {1: "Good", 2: "Fair", 3: "Moderate", 4: "Poor", 5: "Very Poor"}
+            return {"aqi": aqi, "label": aqi_labels.get(aqi, "Unknown")}
+    except:
+        return {"aqi": 1, "label": "Good"}                
 
 
 if __name__ =="__main__": #to run the app
