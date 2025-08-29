@@ -117,37 +117,26 @@ def get_weatherdata(clean_city):
             return {"error":"Network error. Please check your internet connection"}
     
 
-def get_weather_advice(temp,description):
-    advice = " "
-
+def get_weather_advice(temp, description, main_weather):
+    advice = ""
+    
     if temp < 5:
-          advice+= "🥶 It's quite cold! Stay warm and consider hot drinks."
-    elif temp>30:
-         advice+= "🌡️ It's hot! Stay hydrated and avoid prolonged sun exposure."
-    
-    if "rain" in description or "drizzle" in description:
-        advice += "🌧️ Rainy weather - perfect for indoor activities!"
-
-    elif "snow" in description:
-         advice+=  "❄️ Snowy conditions - drive carefully and stay warm!"   
-    elif "thunder" in description:
-         advice+= "⚡️ Thunderstorms - Seek shelter in a sturdy building or hardtop car, avoid tall objects and electrical appliances, and stay away from water."
-    elif "clear" in description:
-         advice+="☀️ perfect for indoor activities! "
-    elif " few" in description:
-         advice+="☁️  Monitor weather, as conditions can change. Have a light jacket or umbrella just in case"
-    elif "scattered" in description:
-         advice+="☁️☁️ Remain aware of the weather. Seek shade occasionally and stay hydrated."
-    elif "broken" in description:
-         advice+= " ☁️☁️ Be prepared for potential changes in weather patterns. Carry rain gear and seek shelter if the clouds darken"
-    elif "overcast" in description:
-         advice+= "☁️☁️ Enjoy indoor activities. If heading out, dress warmly and bring an umbrella or rain gear"
-    
-    elif "tornado" in description:
-         advice+= "🌪️ Tornado: Seek immediate shelter in a basement or interior room, avoid windows, and protect your head."
-    
+        advice = "🥶 Very cold! Limit outdoor exposure and dress warmly."
+    elif temp > 30:
+        advice = "🌡️ Hot weather! Stay hydrated and avoid prolonged sun exposure."
+    elif temp > 25:
+        advice = "☀️ Warm and pleasant! Great weather for outdoor activities."
     else:
-         advice += "Have a Great Day!"
+        advice = "😊 Comfortable temperature! Perfect for any outdoor plans."
+    
+    if main_weather.lower() == 'rain':
+        advice += " 🌧️ Rainy conditions - perfect time for indoor activities!"
+    elif main_weather.lower() == 'snow':
+        advice += " ❄️ Snowy weather - drive carefully and stay warm!"
+    elif main_weather.lower() == 'clear':
+        advice += " ☀️ Clear skies - enjoy the beautiful weather!"
+    elif main_weather.lower() == 'clouds':
+        advice += " ☁️ Cloudy but pleasant - good for outdoor walks!"
     return advice
 
 

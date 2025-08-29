@@ -13,6 +13,8 @@ body {
     min-height: 100vh;
     color: white;
     line-height: 1.6;
+    
+
 }
 
 
@@ -32,7 +34,7 @@ body {
 .app-title {
     font-size: 3rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #60a5fa, #34d399, #fbbf24);
+    background: linear-gradient(135deg, #60a5fa, #EC6EAD, #fbbf24);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -64,7 +66,7 @@ body {
 }
 
 .input-group {
-    position: relative;
+    position:relative;
 }
 
 .search-input {
@@ -80,17 +82,23 @@ body {
 }
 
 .search-input:focus {
-    border-color: #60a5fa;
+    border-color: #0c3261;
     box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
-    background: rgba(15, 23, 42, 0.8);
+    background: linear-gradient(135deg, #071d4a, #2b9ee0);
+    transform: translateY(-4px) translateX(-2px);/* Button moves UP 2 pixels on hover*/
+    box-shadow: 0 10px 5px 5px rgba(9, 41, 73, 0.2);/*Glowing border effect*/
+    color:rgb(43, 41, 41)
 }
 
 .search-input::placeholder {
     color: #64748b;
+
 }
 
+
+
 .search-btn {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(135deg, #6f9eea, #1d4ed8);
     border: none;
     border-radius: 16px;
     padding: 16px 32px;
@@ -103,8 +111,8 @@ body {
 }
 
 .search-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+    transform: translateY(-4px) translateX(-2px);/* Button moves UP 2 pixels on hover*/
+    box-shadow: 0 10px 5px 5px rgba(9, 41, 73, 0.2);/*Glowing border effect*/
     background: linear-gradient(135deg, #2563eb, #1e40af);
 }
 
@@ -121,9 +129,11 @@ body {
         grid-template-columns: 1fr;
     }
 }
+ 
 
 /* Main Weather Card */
 .main-weather {
+    
     background: rgba(30, 41, 59, 0.4);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -435,7 +445,10 @@ body {
     }
 }
 
-
+    @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 
 
 
@@ -642,19 +655,12 @@ input[type="text"]:hover{
                     animation: gradientShift 8s ease infinite;
                     align-items: center;
                 }
- .button:hover{
-            transform: translateY(-4px) translateX(-2px);/* Button moves UP 2 pixels on hover*/
-    /*box-shadow: 0 10px 5px 5px rgba(9, 41, 73, 0.2);/*Glowing border effect*/
-       /*     
-        }
 
 
 
 
-    @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+
+
 }
 
 
