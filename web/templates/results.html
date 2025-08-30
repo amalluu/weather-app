@@ -23,17 +23,18 @@
                 </a>
             </div>
         {% else %}
+        
             <div class="weather-container">
                 <!-- Main Weather Information -->
                 <div class="main-weather">
                     <div class="weather-header">
-                        <div class="location">📍 {{ cityy }}</div>
+                        <div class="location">📍{{ cityy }}</div>
                     </div>
                     
-                    <div class="current-temp">{{ temp }}°</div>
+                    <div class="current-temp">  {{ temp }}°</div>
                     <div class="weather-desc">{{ description }}</div>
                     <div class="feels-like">Feels like {{ feels_like }}°</div>
-                    
+                
                     <!-- Weather Statistics -->
                     <div class="weather-stats">
                         <div class="stat-card">

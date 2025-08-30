@@ -85,16 +85,32 @@ body {
     border-color: #0c3261;
     box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
     background: linear-gradient(135deg, #071d4a, #2b9ee0);
-    transform: translateY(-4px) translateX(-2px);/* Button moves UP 2 pixels on hover*/
-    box-shadow: 0 10px 5px 5px rgba(9, 41, 73, 0.2);/*Glowing border effect*/
-    color:rgb(43, 41, 41)
+    transform: translateY(-4px) translateX(-2px);
+    box-shadow: 0 10px 5px 5px rgba(9, 41, 73, 0.2);
+    color: rgb(224, 205, 205);
 }
 
 .search-input::placeholder {
     color: #64748b;
-
 }
 
+/* ADD THESE LINES TO FIX AUTOCOMPLETE WHITE BACKGROUND */
+.search-input:-webkit-autofill,
+.search-input:-webkit-autofill:hover,
+.search-input:-webkit-autofill:focus,
+.search-input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px rgba(15, 23, 42, 0.6) inset !important;
+    -webkit-text-fill-color: white !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-radius: 16px !important;
+}
+
+/* For Firefox */
+.search-input:-moz-autofill {
+    background-color: rgba(15, 23, 42, 0.6) !important;
+    color: white !important;
+}
 
 
 .search-btn {
@@ -122,38 +138,51 @@ body {
     grid-template-columns: 2fr 1fr;
     gap: 30px;
     margin-top: 30px;
-}
+text-align: center;}
 
 @media (max-width: 1024px) {
     .weather-container {
         grid-template-columns: 1fr;
+        text-align: center;
     }
+}
+
+.resultcard{
+    background-color: #22c55e;
+
 }
  
 
 /* Main Weather Card */
 .main-weather {
     
-    background: rgba(30, 41, 59, 0.4);
+    background: linear-gradient(135deg,#ca832b5d);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
     padding: 40px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    align-content: center;
+    text-align: center;
 }
 
 .weather-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+     flex-direction: column;
+    text-align: center;
     margin-bottom: 30px;
+    align-items: center;
 }
 
 .location {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #e2e8f0;
-}
+    color: #f0ebe2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+   }
 
 .current-temp {
     font-size: 4rem;
@@ -164,14 +193,14 @@ body {
 
 .weather-desc {
     font-size: 1.3rem;
-    color: #94a3b8;
+    color: #eb523e;
     text-transform: capitalize;
     margin-bottom: 20px;
 }
 
 .feels-like {
     font-size: 1rem;
-    color: #64748b;
+    color: #8fbaf6;
     margin-bottom: 30px;
 }
 
